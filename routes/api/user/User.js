@@ -7,7 +7,7 @@ const secret = require("./../../../config/MyUrl").secret
 router.post("/", async (req, res) => {
 
     try {
-        let { name, password, email, phone } = req.body;
+        let { name, password, email, phone, category } = req.body;
 
         // checking if the user allredy exist
         const user = await User.findOne({ $or: [{ email }, { phone }] });
@@ -21,7 +21,8 @@ router.post("/", async (req, res) => {
             name,
             email,
             password,
-            phone
+            phone,
+            category
         });
 
         // hasing the password
